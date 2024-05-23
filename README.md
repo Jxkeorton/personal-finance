@@ -30,6 +30,9 @@
 
 ### Workflow Diagram
 
+![Flow chart](./docs/flow-chart.png)
+
+
 <sup><sub>[*Back to top*](#contents)</sup></sub>
 
 ******
