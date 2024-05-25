@@ -28,10 +28,16 @@
 
 #### Skeleton
 
-### Workflow Diagram
+### Workflow Diagrams
 
-![Flow chart](./docs/flow-chart.png)
+#### Main menu
+![Main Flow chart](./docs/main-flow-chart.png)
 
+#### Options
+![options Flow chart](./docs/options-flow-chart.png)
+
+#### Reports
+![reports Flow chart](./docs/reports-flow-chart.png)
 
 <sup><sub>[*Back to top*](#contents)</sup></sub>
 
