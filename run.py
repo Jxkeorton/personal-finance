@@ -61,6 +61,32 @@ def new_transaction_menu():
     Displays available transaction options
     '''
 
+    list = [
+        "Add Income",
+        "Add Expense"
+    ]
+
+    print("NEW TRANSACTION")
+    for i, option in enumerate(list, start=1):
+        print(f"{i}. {option}")
+    
+    choice = input("Please select an option (1-2): ")
+
+    if choice == 1:
+        add_income()
+    elif choice == 2:
+        add_expense()
+
+def add_income():
+    '''
+    Allows user to add a new amount of income
+    '''
+
+def add_expense():
+    '''
+    Allows user to add a new amount of expense
+    '''
+
 def monthly_budget():
     '''
     Allows user to edit there monthly budget
@@ -82,7 +108,7 @@ def reports_menu():
     for i, option in enumerate(list, start=1):
         print(f"{i}. {option}")
 
-    choice = input("Please select an option (1-2): ")
+    choice = input("Please select an option (1-4): ")
 
     if choice == 1:
         income_report()
@@ -95,12 +121,12 @@ def reports_menu():
 
 def income_report():
     '''
-    Displays income report
+    Displays income report within the specified range
     '''
 
 def expense_report():
     '''
-    Displays expense report
+    Displays expense report within the specified range
     '''
 
 def summary_report():
