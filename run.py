@@ -89,9 +89,9 @@ def reports_menu():
     elif choice == 2:
         expense_report()
     elif choice == 3:
-        summary()
+        summary_report()
     elif choice == 4:
-        analytics()
+        analytics_report()
 
 def income_report():
     '''
@@ -103,12 +103,12 @@ def expense_report():
     Displays expense report
     '''
 
-def summary():
+def summary_report():
     '''
     Displays monthly summary
     '''
 
-def analytics():
+def analytics_report():
     '''
     Displays analytics of spending activity
     '''
