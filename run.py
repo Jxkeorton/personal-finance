@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from datetime import datetime
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -28,7 +29,7 @@ def main_menu():
     for i, option in enumerate(menu_list, start=1):
         print(f"{i}. {option}")
 
-    choice = input("Please select an option (1-2): ")
+    choice = int(input("Please select an option (1-2): "))
     
     if choice == 1:
         options_menu()
@@ -49,12 +50,12 @@ def options_menu():
     for i, option in enumerate(list, start=1):
         print(f"{i}. {option}")
     
-    choice = input("Please select an option (1-2): ")
+    choice = int(input("Please select an option (1-2): "))
     
     if choice == 1:
         new_transaction_menu()
     elif choice == 2:
-        monthly_budget()
+        edit_monthly_budget()
     
 def new_transaction_menu():
     '''
@@ -70,7 +71,7 @@ def new_transaction_menu():
     for i, option in enumerate(list, start=1):
         print(f"{i}. {option}")
     
-    choice = input("Please select an option (1-2): ")
+    choice = int(input("Please select an option (1-2): "))
 
     if choice == 1:
         add_income()
@@ -79,15 +80,38 @@ def new_transaction_menu():
 
 def add_income():
     '''
-    Allows user to add a new amount of income
+    Allows user to add a new amount of income and choose a category
     '''
+    print("ADD INCOME")
+    print("Enter numbers only\n")
+
+    while True:
+        try:
+            new_income = float(input("Enter a new income amount here:\n"))
+            if new_income < 0:
+                print("Amount must be positive. Please try again.")
+                continue
+            break
+        except ValueError:
+            print("Invalid input. Please enter a numeric value.")
+    
+    category = input("Enter a category for the income:\n")
+    # Get the current date
+    current_date = datetime.now().strftime("%Y-%m-%d")
+
+    print("Updating income worksheet...\n")
+    worksheet_to_update = SHEET.worksheet('income')
+    worksheet_to_update.append_row([new_income, category, current_date])
+    print("Income entry added successfully!")
+    print(f" Amount: {new_income}, Category: {category}, Date: {current_date}")
+
 
 def add_expense():
     '''
     Allows user to add a new amount of expense
     '''
 
-def monthly_budget():
+def edit_monthly_budget():
     '''
     Allows user to edit there monthly budget
     '''
@@ -108,7 +132,7 @@ def reports_menu():
     for i, option in enumerate(list, start=1):
         print(f"{i}. {option}")
 
-    choice = input("Please select an option (1-4): ")
+    choice = int(input("Please select an option (1-4): "))
 
     if choice == 1:
         income_report()
@@ -146,4 +170,5 @@ def main():
     main_menu()
 
 if __name__ == '__main__':
-    main()
+    # main()
+    add_income()
