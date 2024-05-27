@@ -72,67 +72,37 @@ def new_transaction_menu():
         print(f"{i}. {option}")
     
     choice = int(input("Please select an option (1-2): "))
-
     if choice == 1:
-        add_income()
+        add_transaction("income")
     elif choice == 2:
-        add_expense()
+        add_transaction("expense")
 
-def add_income():
+def add_transaction(transaction_type):
     '''
-    Allows user to add a new amount of income and choose a category
+    Allows user to add a new transaction (income or expense) and choose a category
     '''
-    print("ADD INCOME")
+    print(f"ADD {transaction_type.upper()}")
     print("Enter numbers only\n")
 
     while True:
         try:
-            new_income = float(input("Enter a new income amount here:"))
-            if new_income < 0:
+            amount = float(input(f"Enter a new {transaction_type} amount here: "))
+            if amount < 0:
                 print("Amount must be positive. Please try again.\n")
                 continue
             break
         except ValueError:
             print("Invalid input. Please enter a numeric value.\n")
     
-    category = input("Enter a category for the income:")
+    category = input(f"Enter a category for the {transaction_type}: ")
     # Get the current date
     current_date = datetime.now().strftime("%Y-%m-%d")
 
-    print("Updating income worksheet...")
-    worksheet_to_update = SHEET.worksheet('income')
-    worksheet_to_update.append_row([new_income, category, current_date])
-    print("Income entry added successfully!")
-    print(f" Amount: {new_income}, Category: {category}, Date: {current_date}\n")
-
-
-def add_expense():
-    '''
-    Allows user to add a new amount of expense
-    '''
-    print("ADD EXPENSE")
-    print("Enter numbers only\n")
-
-    while True:
-        try:
-            new_expense = float(input("Enter a new expense amount here:"))
-            if new_expense < 0:
-                print("Amount must be positive. Please try again.\n")
-                continue
-            break
-        except ValueError:
-            print("Invalid input. Please enter a numeric value.\n")
-    
-    category = input("Enter a category for the expense:")
-    # Get the current date
-    current_date = datetime.now().strftime("%Y-%m-%d")
-
-    print("Updating income worksheet...")
-    worksheet_to_update = SHEET.worksheet('income')
-    worksheet_to_update.append_row([new_expense, category, current_date])
-    print("Income entry added successfully!")
-    print(f" Amount: {new_expense}, Category: {category}, Date: {current_date}\n")
-
+    print(f"Updating {transaction_type} worksheet...")
+    worksheet_to_update = SHEET.worksheet(transaction_type)
+    worksheet_to_update.append_row([amount, category, current_date])
+    print(f"{transaction_type.capitalize()} entry added successfully!")
+    print(f"Amount: {amount}, Category: {category}, Date: {current_date}\n")
 
 def edit_monthly_budget():
     '''
@@ -194,4 +164,4 @@ def main():
 
 if __name__ == '__main__':
     # main()
-    add_income()
+    new_transaction_menu()
