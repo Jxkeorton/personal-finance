@@ -1,6 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from datetime import datetime
+from datetime import datetime, timedelta
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -210,8 +210,32 @@ def parse_date(date_str):
 
 def summary_report():
     '''
-    Displays monthly summary
-    '''
+    Displays monthly summary for the previous month
+    ''' 
+    print("MONTHLY SUMMARY REPORT")
+
+    today = datetime.now()
+    
+    # Calculate start and end dates for the previous month
+    first_day_of_current_month = today.replace(day=1)
+    last_day_of_previous_month = first_day_of_current_month - timedelta(days=1)
+    first_day_of_previous_month = last_day_of_previous_month.replace(day=1)
+
+    income_worksheet = SHEET.worksheet('income')
+    income_transactions = income_worksheet.get_all_records()
+    
+    expense_worksheet = SHEET.worksheet('expense')
+    expense_transactions = expense_worksheet.get_all_records()
+
+    # Filter income and expense transactions for the previous month
+    previous_month_income = sum(float(transaction['amount']) for transaction in income_transactions if first_day_of_previous_month <= parse_date(transaction['date']) <= last_day_of_previous_month)
+    
+    previous_month_expense = sum(float(transaction['amount']) for transaction in expense_transactions if first_day_of_previous_month <= parse_date(transaction['date']) <= last_day_of_previous_month)
+
+    print(f"Month: {first_day_of_previous_month.strftime('%B %Y')}")
+    print(f"Total Income: {previous_month_income}")
+    print(f"Total Expense: {previous_month_expense}")
+    print(f"Net: {previous_month_income - previous_month_expense}")
 
 def analytics_report():
     '''
@@ -226,4 +250,4 @@ def main():
 
 if __name__ == '__main__':
     # main()
-    reports_menu()
+    summary_report()
