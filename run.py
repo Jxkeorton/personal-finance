@@ -150,19 +150,19 @@ def reports_menu():
     choice = int(input("Please select an option (1-4): "))
 
     if choice == 1:
-        income_report()
+        transaction_report('income')
     elif choice == 2:
-        expense_report()
+        transaction_report('expense')
     elif choice == 3:
         summary_report()
     elif choice == 4:
         analytics_report()
 
-def income_report():
+def transaction_report(transaction_type):
     '''
-    Displays income report within the specified range
+    Displays transaction report within the specified type and range
     '''
-    print("INCOME REPORT")
+    print(f"{transaction_type.upper()} REPORT")
     print("Please enter the date range in YYYY-MM-DD format.\n")
 
     start_date_str = input("Enter start date (YYYY-MM-DD): ")
@@ -179,7 +179,7 @@ def income_report():
         print("Start date must be earlier than or equal to end date. Please try again.")
         return
     
-    worksheet = SHEET.worksheet('income')
+    worksheet = SHEET.worksheet(transaction_type)
     transactions = worksheet.get_all_records()
 
     filtered_transactions = []
@@ -192,54 +192,12 @@ def income_report():
             total_income += float(transaction['amount'])
     
     if not filtered_transactions:
-        print(f"No income transactions found between {start_date_str} and {end_date_str}.")
+        print(f"No {transaction_type} transactions found between {start_date_str} and {end_date_str}.")
     else:
-        print(f"Income transactions between {start_date_str} and {end_date_str}:")
+        print(f"{transaction_type.capitalize()} transactions between {start_date_str} and {end_date_str}:")
         for transaction in filtered_transactions:
             print(f"Date: {transaction['date']}, Amount: {transaction['amount']}, Category: {transaction['category']}")
-        print(f"\nTotal Income: {total_income}")
-
-def expense_report():
-    '''
-    Displays expense report within the specified range
-    '''
-    print("EXPENSE REPORT")
-    print("Please enter the date range in YYYY-MM-DD format.\n")
-
-    start_date_str = input("Enter start date (YYYY-MM-DD): ")
-    end_date_str = input("Enter end date (YYYY-MM-DD): ")
-
-    start_date = parse_date(start_date_str)
-    end_date = parse_date(end_date_str)
-
-    if not start_date or not end_date:
-        print("Invalid date format. Please try again.")
-        return
-
-    if start_date > end_date:
-        print("Start date must be earlier than or equal to end date. Please try again.")
-        return
-
-    worksheet = SHEET.worksheet('expense')
-    transactions = worksheet.get_all_records()
-
-    filtered_transactions = []
-    total_expense = 0.0
-
-    for transaction in transactions:
-        transaction_date = parse_date(transaction['date'])
-        if start_date <= transaction_date <= end_date:
-            filtered_transactions.append(transaction)
-            total_expense += float(transaction['amount'])
-
-    if not filtered_transactions:
-        print(f"No expense transactions found between {start_date_str} and {end_date_str}.")
-    else:
-        print(f"Expense transactions between {start_date_str} and {end_date_str}:")
-        for transaction in filtered_transactions:
-            print(f"Date: {transaction['date']}, Amount: {transaction['amount']}, Category: {transaction['category']}")
-        print(f"\nTotal Expense: {total_expense}")
-
+        print(f"\nTotal {transaction_type.capitalize()}: {total_income}")
 
 def parse_date(date_str):
     '''
@@ -268,4 +226,4 @@ def main():
 
 if __name__ == '__main__':
     # main()
-    income_report()
+    reports_menu()
