@@ -203,6 +203,43 @@ def expense_report():
     '''
     Displays expense report within the specified range
     '''
+    print("EXPENSE REPORT")
+    print("Please enter the date range in YYYY-MM-DD format.\n")
+
+    start_date_str = input("Enter start date (YYYY-MM-DD): ")
+    end_date_str = input("Enter end date (YYYY-MM-DD): ")
+
+    start_date = parse_date(start_date_str)
+    end_date = parse_date(end_date_str)
+
+    if not start_date or not end_date:
+        print("Invalid date format. Please try again.")
+        return
+
+    if start_date > end_date:
+        print("Start date must be earlier than or equal to end date. Please try again.")
+        return
+
+    worksheet = SHEET.worksheet('expense')
+    transactions = worksheet.get_all_records()
+
+    filtered_transactions = []
+    total_expense = 0.0
+
+    for transaction in transactions:
+        transaction_date = parse_date(transaction['date'])
+        if start_date <= transaction_date <= end_date:
+            filtered_transactions.append(transaction)
+            total_expense += float(transaction['amount'])
+
+    if not filtered_transactions:
+        print(f"No expense transactions found between {start_date_str} and {end_date_str}.")
+    else:
+        print(f"Expense transactions between {start_date_str} and {end_date_str}:")
+        for transaction in filtered_transactions:
+            print(f"Date: {transaction['date']}, Amount: {transaction['amount']}, Category: {transaction['category']}")
+        print(f"\nTotal Expense: {total_expense}")
+
 
 def parse_date(date_str):
     '''
