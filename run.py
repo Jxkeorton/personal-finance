@@ -108,6 +108,28 @@ def edit_monthly_budget():
     '''
     Allows user to edit there monthly budget
     '''
+    print("EDIT YOUR MONTHLY BUDGET")
+
+    stats = SHEET.worksheet('stats')
+    current_budget = stats.col_values(2)[1]
+    if current_budget == 0:
+        print("You dont currently have a monthly budget set\n")
+    else:
+        print(f"Current monthly budget: {current_budget}\n")
+
+    while True:
+        try:
+            new_monthly_budget = float(input("Please add a new monthly budget: "))
+            if new_monthly_budget < 0:
+                print("Amount must be positive. Please try again.\n")
+                continue
+            break
+        except ValueError:
+            print("Invalid input. Please enter a numeric value.\n")
+    
+    print("Updating monthly budget...")
+    stats.update_cell(2, 2, new_monthly_budget)
+    print(f"Current budget updated to: {new_monthly_budget}")
     
 def reports_menu():
     '''
@@ -164,4 +186,4 @@ def main():
 
 if __name__ == '__main__':
     # main()
-    new_transaction_menu()
+    edit_monthly_budget()
