@@ -239,8 +239,41 @@ def summary_report():
 
 def analytics_report():
     '''
-    Displays analytics of spending activity
+    Displays analytics of spending activity between start_date and end_date
     '''
+    print("SPENDING ANALYTICS REPORT")
+    print("Please enter the date range in YYYY-MM-DD format.\n")
+
+    start_date_str = input("Enter start date (YYYY-MM-DD): ")
+    end_date_str = input("Enter end date (YYYY-MM-DD): ")
+
+    start_date = parse_date(start_date_str)
+    end_date = parse_date(end_date_str)
+
+    if not start_date or not end_date:
+        print("Invalid date format. Please try again.")
+        return
+
+    if start_date > end_date:
+        print("Start date must be earlier than or equal to end date. Please try again.")
+        return
+
+    # Fetch income and expense transactions
+    expense_transactions = SHEET.worksheet('expense').get_all_records()
+
+    # Calculate total spending
+    total_spending = sum(float(transaction['amount']) for transaction in expense_transactions if start_date <= parse_date(transaction['date']) <= end_date)
+
+    # Calculate spending by category
+    categories = set(transaction['category'] for transaction in expense_transactions)
+    spending_by_category = {category: sum(float(transaction['amount']) for transaction in expense_transactions if transaction['category'] == category and start_date <= parse_date(transaction['date']) <= end_date) for category in categories}
+
+    print("\n1. Total Spending:")
+    print(f"   Total Amount Spent: {total_spending}\n")
+
+    print("2. Spending by Category:")
+    for category, amount in spending_by_category.items():
+        print(f"   {category}: {amount}")
     
 def main():
     '''
@@ -250,4 +283,4 @@ def main():
 
 if __name__ == '__main__':
     # main()
-    summary_report()
+    analytics_report()
