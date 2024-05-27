@@ -87,29 +87,52 @@ def add_income():
 
     while True:
         try:
-            new_income = float(input("Enter a new income amount here:\n"))
+            new_income = float(input("Enter a new income amount here:"))
             if new_income < 0:
-                print("Amount must be positive. Please try again.")
+                print("Amount must be positive. Please try again.\n")
                 continue
             break
         except ValueError:
-            print("Invalid input. Please enter a numeric value.")
+            print("Invalid input. Please enter a numeric value.\n")
     
-    category = input("Enter a category for the income:\n")
+    category = input("Enter a category for the income:")
     # Get the current date
     current_date = datetime.now().strftime("%Y-%m-%d")
 
-    print("Updating income worksheet...\n")
+    print("Updating income worksheet...")
     worksheet_to_update = SHEET.worksheet('income')
     worksheet_to_update.append_row([new_income, category, current_date])
     print("Income entry added successfully!")
-    print(f" Amount: {new_income}, Category: {category}, Date: {current_date}")
+    print(f" Amount: {new_income}, Category: {category}, Date: {current_date}\n")
 
 
 def add_expense():
     '''
     Allows user to add a new amount of expense
     '''
+    print("ADD EXPENSE")
+    print("Enter numbers only\n")
+
+    while True:
+        try:
+            new_expense = float(input("Enter a new expense amount here:"))
+            if new_expense < 0:
+                print("Amount must be positive. Please try again.\n")
+                continue
+            break
+        except ValueError:
+            print("Invalid input. Please enter a numeric value.\n")
+    
+    category = input("Enter a category for the expense:")
+    # Get the current date
+    current_date = datetime.now().strftime("%Y-%m-%d")
+
+    print("Updating income worksheet...")
+    worksheet_to_update = SHEET.worksheet('income')
+    worksheet_to_update.append_row([new_expense, category, current_date])
+    print("Income entry added successfully!")
+    print(f" Amount: {new_expense}, Category: {category}, Date: {current_date}\n")
+
 
 def edit_monthly_budget():
     '''
