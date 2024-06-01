@@ -1,3 +1,4 @@
+import os
 import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime, timedelta
@@ -18,10 +19,17 @@ SHEET = GSPREAD_CLIENT.open('personal_finance')
 stats = SHEET.worksheet('stats')
 data = stats.get_all_values()
 
+def clear_terminal():
+    # Clear terminal based on platform
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def main_menu():
     '''
     Display the main menu within terminal
     '''
+
+    clear_terminal()
+
     menu_list = [
         "Options",
         "Reports"
@@ -51,6 +59,8 @@ def options_menu():
     Displays list of options available
     '''
 
+    clear_terminal()
+
     list = [
         "New Transaction",
         "Edit Monthly Budget"
@@ -79,6 +89,8 @@ def new_transaction_menu():
     Displays available transaction options
     '''
 
+    clear_terminal()
+
     list = [
         "Add Income",
         "Add Expense"
@@ -106,6 +118,9 @@ def add_transaction(transaction_type):
     '''
     Allows user to add a new transaction (income or expense) and choose a category
     '''
+
+    clear_terminal()
+
     print(f"ADD {transaction_type.upper()}")
     print("Enter numbers only\n")
 
@@ -139,6 +154,10 @@ def edit_monthly_budget():
     '''
     Allows user to edit there monthly budget
     '''
+
+    clear_terminal()
+
+
     print("EDIT YOUR MONTHLY BUDGET")
 
     stats = SHEET.worksheet('stats')
@@ -166,6 +185,8 @@ def reports_menu():
     '''
     Displays list of reports available
     '''
+
+    clear_terminal()
 
     list = [
         "Income",
@@ -200,6 +221,9 @@ def transaction_report(transaction_type):
     '''
     Displays transaction report within the specified type and range
     '''
+
+    clear_terminal()
+
     print(f"{transaction_type.upper()} REPORT")
     print("Please enter the date range in YYYY-MM-DD format.\n")
 
@@ -256,6 +280,9 @@ def summary_report():
     '''
     Displays monthly summary for the previous month
     ''' 
+
+    clear_terminal()
+
     print("MONTHLY SUMMARY REPORT")
 
     today = datetime.now()
@@ -288,6 +315,9 @@ def analytics_report():
     '''
     Displays analytics of spending activity between start_date and end_date
     '''
+
+    clear_terminal()
+    
     print("SPENDING ANALYTICS REPORT")
     print("Please enter the date range in YYYY-MM-DD format.\n")
 
