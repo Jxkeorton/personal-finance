@@ -29,12 +29,20 @@ def main_menu():
     for i, option in enumerate(menu_list, start=1):
         print(f"{i}. {option}")
 
-    choice = int(input("Please select an option (1-2): "))
+    while True:
+        try:
+            choice = int(input("Please select an option (1-2): "))
+            if choice not in range(1, 3):
+                raise ValueError("Choice out of range.")
+            break
+        except ValueError:
+            print("Invalid choice. Please enter 1 or 2.")
     
     if choice == 1:
         options_menu()
     elif choice == 2:
         reports_menu()
+            
     
 def options_menu():
     '''
@@ -50,7 +58,14 @@ def options_menu():
     for i, option in enumerate(list, start=1):
         print(f"{i}. {option}")
     
-    choice = int(input("Please select an option (1-2): "))
+    while True:
+        try:
+            choice = int(input("Please select an option (1-2): "))
+            if choice not in range(1, 3):
+                raise ValueError("Choice out of range.")
+            break
+        except ValueError:
+            print("Invalid choice. Please enter 1 or 2.")
     
     if choice == 1:
         new_transaction_menu()
@@ -71,7 +86,15 @@ def new_transaction_menu():
     for i, option in enumerate(list, start=1):
         print(f"{i}. {option}")
     
-    choice = int(input("Please select an option (1-2): "))
+    while True:
+        try:
+            choice = int(input("Please select an option (1-2): "))
+            if choice not in range(1, 3):
+                raise ValueError("Choice out of range.")
+            break
+        except ValueError:
+            print("Invalid choice. Please enter 1 or 2.")
+
     if choice == 1:
         add_transaction("income")
     elif choice == 2:
@@ -94,7 +117,13 @@ def add_transaction(transaction_type):
         except ValueError:
             print("Invalid input. Please enter a numeric value.\n")
     
-    category = input(f"Enter a category for the {transaction_type}: ")
+    while True:
+        category = input(f"Enter a category for the {transaction_type}: ")
+        if not category.strip():
+            print("Category cannot be empty. Please try again.")
+            continue
+        break
+
     # Get the current date
     current_date = datetime.now().strftime("%Y-%m-%d")
 
@@ -147,7 +176,14 @@ def reports_menu():
     for i, option in enumerate(list, start=1):
         print(f"{i}. {option}")
 
-    choice = int(input("Please select an option (1-4): "))
+    while True:
+        try:
+            choice = int(input("Please select an option (1-2): "))
+            if choice not in range(1, 5):
+                raise ValueError("Choice out of range.")
+            break
+        except ValueError:
+            print("Invalid choice. Please enter either 1, 2, 3 or 4.")
 
     if choice == 1:
         transaction_report('income')
@@ -165,19 +201,22 @@ def transaction_report(transaction_type):
     print(f"{transaction_type.upper()} REPORT")
     print("Please enter the date range in YYYY-MM-DD format.\n")
 
-    start_date_str = input("Enter start date (YYYY-MM-DD): ")
-    end_date_str = input("Enter end date (YYYY-MM-DD): ")
+    while True:
+        start_date_str = input("Enter start date (YYYY-MM-DD): ")
+        end_date_str = input("Enter end date (YYYY-MM-DD): ")
 
-    start_date = parse_date(start_date_str)
-    end_date = parse_date(end_date_str)
+        start_date = parse_date(start_date_str)
+        end_date = parse_date(end_date_str)
 
-    if not start_date or not end_date:
-        print("Invalid date format. Please try again.")
-        return
+        if start_date is None or end_date is None:
+            print("Invalid date format. Please try again.")
+            continue
 
-    if start_date > end_date:
-        print("Start date must be earlier than or equal to end date. Please try again.")
-        return
+        if start_date > end_date:
+            print("Start date must be earlier than or equal to end date. Please try again.")
+            continue
+
+        break
     
     worksheet = SHEET.worksheet(transaction_type)
     transactions = worksheet.get_all_records()
@@ -204,8 +243,10 @@ def parse_date(date_str):
     Parse date string into datetime object
     '''
     try:
-        return datetime.strptime(date_str, "%Y-%m-%d")
+        date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+        return date_obj
     except ValueError:
+        print("Invalid date format. Please enter a date in YYYY-MM-DD format.")
         return None
 
 def summary_report():
@@ -244,19 +285,22 @@ def analytics_report():
     print("SPENDING ANALYTICS REPORT")
     print("Please enter the date range in YYYY-MM-DD format.\n")
 
-    start_date_str = input("Enter start date (YYYY-MM-DD): ")
-    end_date_str = input("Enter end date (YYYY-MM-DD): ")
+    while True:
+        start_date_str = input("Enter start date (YYYY-MM-DD): ")
+        end_date_str = input("Enter end date (YYYY-MM-DD): ")
 
-    start_date = parse_date(start_date_str)
-    end_date = parse_date(end_date_str)
+        start_date = parse_date(start_date_str)
+        end_date = parse_date(end_date_str)
 
-    if not start_date or not end_date:
-        print("Invalid date format. Please try again.")
-        return
+        if start_date is None or end_date is None:
+            print("Invalid date format. Please try again.")
+            continue
 
-    if start_date > end_date:
-        print("Start date must be earlier than or equal to end date. Please try again.")
-        return
+        if start_date > end_date:
+            print("Start date must be earlier than or equal to end date. Please try again.")
+            continue
+
+        break
 
     # Fetch income and expense transactions
     expense_transactions = SHEET.worksheet('expense').get_all_records()
