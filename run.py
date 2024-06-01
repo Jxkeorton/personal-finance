@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime, timedelta
+from tabulate import tabulate
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -230,13 +231,14 @@ def transaction_report(transaction_type):
             filtered_transactions.append(transaction)
             total_income += float(transaction['amount'])
     
-    if not filtered_transactions:
-        print(f"No {transaction_type} transactions found between {start_date_str} and {end_date_str}.")
-    else:
-        print(f"{transaction_type.capitalize()} transactions between {start_date_str} and {end_date_str}:")
-        for transaction in filtered_transactions:
-            print(f"Date: {transaction['date']}, Amount: {transaction['amount']}, Category: {transaction['category']}")
+    table = []
+    for transaction in filtered_transactions:
+        table.append([transaction['date'], transaction['amount'], transaction['category']])
+    if table:
+        print(tabulate(table, headers=['Date', 'Amount', 'Category']))
         print(f"\nTotal {transaction_type.capitalize()}: {total_income}")
+    else:
+        print(f"No {transaction_type} transactions found between {start_date_str} and {end_date_str}.")
 
 def parse_date(date_str):
     '''
@@ -274,9 +276,12 @@ def summary_report():
     previous_month_expense = sum(float(transaction['amount']) for transaction in expense_transactions if first_day_of_previous_month <= parse_date(transaction['date']) <= last_day_of_previous_month)
 
     print(f"Month: {first_day_of_previous_month.strftime('%B %Y')}")
-    print(f"Total Income: {previous_month_income}")
-    print(f"Total Expense: {previous_month_expense}")
-    print(f"Net: {previous_month_income - previous_month_expense}")
+    data = [
+        ["Total Income", previous_month_income],
+        ["Total Expense", previous_month_expense],
+        ["Net", previous_month_income - previous_month_expense]
+    ]
+    print(tabulate(data, headers=["Category", "Amount"]))
 
 def analytics_report():
     '''
@@ -312,12 +317,14 @@ def analytics_report():
     categories = set(transaction['category'] for transaction in expense_transactions)
     spending_by_category = {category: sum(float(transaction['amount']) for transaction in expense_transactions if transaction['category'] == category and start_date <= parse_date(transaction['date']) <= end_date) for category in categories}
 
-    print("\n1. Total Spending:")
-    print(f"   Total Amount Spent: {total_spending}\n")
-
-    print("2. Spending by Category:")
+    data = []
     for category, amount in spending_by_category.items():
-        print(f"   {category}: {amount}")
+        data.append([category, amount])
+
+    print(tabulate(data, headers=['Category', 'Amount']))
+    print("--------------")
+    print(f"Total Spending: {total_spending}")
+    
     
 def main():
     '''
@@ -326,5 +333,4 @@ def main():
     main_menu()
 
 if __name__ == '__main__':
-    # main()
-    analytics_report()
+    main()
