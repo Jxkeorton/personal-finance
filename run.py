@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime, timedelta
 from tabulate import tabulate
+from colorama import Back, Style
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -131,7 +132,7 @@ def add_transaction(transaction_type):
     print(f"Updating {transaction_type} worksheet...")
     worksheet_to_update = SHEET.worksheet(transaction_type)
     worksheet_to_update.append_row([amount, category, current_date])
-    print(f"{transaction_type.capitalize()} entry added successfully!")
+    print(Back.GREEN + f"{transaction_type.capitalize()} entry added successfully!" + Style.RESET_ALL)
     print(f"Amount: {amount}, Category: {category}, Date: {current_date}\n")
 
 def edit_monthly_budget():
@@ -149,7 +150,7 @@ def edit_monthly_budget():
 
     while True:
         try:
-            new_monthly_budget = float(input("Please add a new monthly budget: "))
+            new_monthly_budget = float(input("Please enter a new monthly budget: "))
             if new_monthly_budget < 0:
                 print("Amount must be positive. Please try again.\n")
                 continue
@@ -157,9 +158,9 @@ def edit_monthly_budget():
         except ValueError:
             print("Invalid input. Please enter a numeric value.\n")
     
-    print("Updating monthly budget...")
+    print("Updating monthly budget...\n")
     stats.update_cell(2, 2, new_monthly_budget)
-    print(f"Current budget updated to: {new_monthly_budget}")
+    print(Back.GREEN + f"Current budget updated to: {new_monthly_budget}" + Style.RESET_ALL)
     
 def reports_menu():
     '''
