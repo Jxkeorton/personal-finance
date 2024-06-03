@@ -19,9 +19,11 @@ SHEET = GSPREAD_CLIENT.open('personal_finance')
 stats = SHEET.worksheet('stats')
 data = stats.get_all_values()
 
+
 def clear_terminal():
     # Clear terminal based on platform
     os.system('cls' if os.name == 'nt' else 'clear')
+
 
 def main_menu():
     '''
@@ -47,13 +49,13 @@ def main_menu():
             break
         except ValueError:
             print("Invalid choice. Please enter 1 or 2.")
-    
+
     if choice == 1:
         options_menu()
     elif choice == 2:
         reports_menu()
-            
-    
+
+
 def options_menu():
     '''
     Displays list of options available
@@ -69,7 +71,7 @@ def options_menu():
     print("OPTIONS")
     for i, option in enumerate(list, start=1):
         print(f"{i}. {option}")
-    
+
     while True:
         try:
             choice = int(input("Please select an option (1-2): "))
@@ -78,12 +80,13 @@ def options_menu():
             break
         except ValueError:
             print("Invalid choice. Please enter 1 or 2.")
-    
+
     if choice == 1:
         new_transaction_menu()
     elif choice == 2:
         edit_monthly_budget()
-    
+
+
 def new_transaction_menu():
     '''
     Displays available transaction options
@@ -99,7 +102,7 @@ def new_transaction_menu():
     print("NEW TRANSACTION")
     for i, option in enumerate(list, start=1):
         print(f"{i}. {option}")
-    
+
     while True:
         try:
             choice = int(input("Please select an option (1-2): "))
@@ -114,9 +117,11 @@ def new_transaction_menu():
     elif choice == 2:
         add_transaction("expense")
 
+
 def add_transaction(transaction_type):
     '''
-    Allows user to add a new transaction (income or expense) and choose a category
+    Allows user to add a new transaction
+    (income or expense) and choose a category
     '''
 
     clear_terminal()
@@ -126,14 +131,15 @@ def add_transaction(transaction_type):
 
     while True:
         try:
-            amount = float(input(f"Enter a new {transaction_type} amount here: "))
+            prompt = f"Enter a new {transaction_type} amount here: "
+            amount = float(input(prompt))
             if amount < 0:
                 print("Amount must be positive. Please try again.\n")
                 continue
             break
         except ValueError:
             print("Invalid input. Please enter a numeric value.\n")
-    
+
     while True:
         category = input(f"Enter a category for the {transaction_type}: ")
         if not category.strip():
@@ -147,8 +153,10 @@ def add_transaction(transaction_type):
     print(f"Updating {transaction_type} worksheet...")
     worksheet_to_update = SHEET.worksheet(transaction_type)
     worksheet_to_update.append_row([amount, category, current_date])
-    print(Back.GREEN + f"{transaction_type.capitalize()} entry added successfully!" + Style.RESET_ALL)
+    message = f"{transaction_type.capitalize()} entry added successfully!"
+    print(Back.GREEN + message + Style.RESET_ALL)
     print(f"Amount: {amount}, Category: {category}, Date: {current_date}\n")
+
 
 def edit_monthly_budget():
     '''
@@ -156,7 +164,6 @@ def edit_monthly_budget():
     '''
 
     clear_terminal()
-
 
     print("EDIT YOUR MONTHLY BUDGET")
 
@@ -169,18 +176,21 @@ def edit_monthly_budget():
 
     while True:
         try:
-            new_monthly_budget = float(input("Please enter a new monthly budget: "))
+            prompt = "Please enter a new monthly budget: "
+            new_monthly_budget = float(input(prompt))
             if new_monthly_budget < 0:
                 print("Amount must be positive. Please try again.\n")
                 continue
             break
         except ValueError:
             print("Invalid input. Please enter a numeric value.\n")
-    
+
     print("Updating monthly budget...\n")
     stats.update_cell(2, 2, new_monthly_budget)
-    print(Back.GREEN + f"Current budget updated to: {new_monthly_budget}" + Style.RESET_ALL)
-    
+    message = f"Current budget updated to: {new_monthly_budget}"
+    print(Back.GREEN + message + Style.RESET_ALL)
+
+
 def reports_menu():
     '''
     Displays list of reports available
@@ -217,6 +227,7 @@ def reports_menu():
     elif choice == 4:
         analytics_report()
 
+
 def transaction_report(transaction_type):
     '''
     Displays transaction report within the specified type and range
@@ -239,11 +250,12 @@ def transaction_report(transaction_type):
             continue
 
         if start_date > end_date:
-            print("Start date must be earlier than or equal to end date. Please try again.")
+            print("Start date must precede or equal end date. \
+                  Please try again.")
             continue
 
         break
-    
+
     worksheet = SHEET.worksheet(transaction_type)
     transactions = worksheet.get_all_records()
 
@@ -255,15 +267,22 @@ def transaction_report(transaction_type):
         if start_date <= transaction_date <= end_date:
             filtered_transactions.append(transaction)
             total_income += float(transaction['amount'])
-    
+
     table = []
     for transaction in filtered_transactions:
-        table.append([transaction['date'], transaction['amount'], transaction['category']])
+        table.append([
+            transaction['date'],
+            transaction['amount'],
+            transaction['category']
+        ])
     if table:
         print(tabulate(table, headers=['Date', 'Amount', 'Category']))
         print(f"\nTotal {transaction_type.capitalize()}: {total_income}")
     else:
-        print(f"No {transaction_type} transactions found between {start_date_str} and {end_date_str}.")
+        message = (f"No {transaction_type} transactions found between \
+                   {start_date_str} and {end_date_str}.")
+        print(message)
+
 
 def parse_date(date_str):
     '''
@@ -276,17 +295,18 @@ def parse_date(date_str):
         print("Invalid date format. Please enter a date in YYYY-MM-DD format.")
         return None
 
+
 def summary_report():
     '''
     Displays monthly summary for the previous month
-    ''' 
+    '''
 
     clear_terminal()
 
     print("MONTHLY SUMMARY REPORT")
 
     today = datetime.now()
-    
+
     # Calculate start and end dates for the previous month
     first_day_of_current_month = today.replace(day=1)
     last_day_of_previous_month = first_day_of_current_month - timedelta(days=1)
@@ -294,14 +314,22 @@ def summary_report():
 
     income_worksheet = SHEET.worksheet('income')
     income_transactions = income_worksheet.get_all_records()
-    
+
     expense_worksheet = SHEET.worksheet('expense')
     expense_transactions = expense_worksheet.get_all_records()
 
     # Filter income and expense transactions for the previous month
-    previous_month_income = sum(float(transaction['amount']) for transaction in income_transactions if first_day_of_previous_month <= parse_date(transaction['date']) <= last_day_of_previous_month)
-    
-    previous_month_expense = sum(float(transaction['amount']) for transaction in expense_transactions if first_day_of_previous_month <= parse_date(transaction['date']) <= last_day_of_previous_month)
+    previous_month_income = sum(
+        float(transaction['amount']) for transaction in income_transactions
+        if first_day_of_previous_month
+        <= parse_date(transaction['date'])
+        <= last_day_of_previous_month)
+
+    previous_month_expense = sum(
+        float(transaction['amount']) for transaction in expense_transactions
+        if first_day_of_previous_month
+        <= parse_date(transaction['date'])
+        <= last_day_of_previous_month)
 
     print(f"Month: {first_day_of_previous_month.strftime('%B %Y')}")
     data = [
@@ -311,13 +339,14 @@ def summary_report():
     ]
     print(tabulate(data, headers=["Category", "Amount"]))
 
+
 def analytics_report():
     '''
     Displays analytics of spending activity between start_date and end_date
     '''
 
     clear_terminal()
-    
+
     print("SPENDING ANALYTICS REPORT")
     print("Please enter the date range in YYYY-MM-DD format.\n")
 
@@ -333,7 +362,8 @@ def analytics_report():
             continue
 
         if start_date > end_date:
-            print("Start date must be earlier than or equal to end date. Please try again.")
+            print("Start date must precede or equal end date. \
+                  Please try again.")
             continue
 
         break
@@ -342,11 +372,25 @@ def analytics_report():
     expense_transactions = SHEET.worksheet('expense').get_all_records()
 
     # Calculate total spending
-    total_spending = sum(float(transaction['amount']) for transaction in expense_transactions if start_date <= parse_date(transaction['date']) <= end_date)
+    total_spending = sum(
+        float(transaction['amount']) for transaction in expense_transactions
+        if start_date
+        <= parse_date(transaction['date'])
+        <= end_date)
 
     # Calculate spending by category
-    categories = set(transaction['category'] for transaction in expense_transactions)
-    spending_by_category = {category: sum(float(transaction['amount']) for transaction in expense_transactions if transaction['category'] == category and start_date <= parse_date(transaction['date']) <= end_date) for category in categories}
+    categories = set(
+        transaction['category']
+        for transaction in expense_transactions
+    )
+    spending_by_category = {category: sum(
+        float(transaction['amount'])
+        for transaction in expense_transactions
+        if transaction['category'] == category and start_date
+        <= parse_date(transaction['date'])
+        <= end_date)
+        for category in categories
+    }
 
     data = []
     for category, amount in spending_by_category.items():
@@ -355,13 +399,14 @@ def analytics_report():
     print(tabulate(data, headers=['Category', 'Amount']))
     print("--------------")
     print(f"Total Spending: {total_spending}")
-    
-    
+
+
 def main():
     '''
     Run all functions in program
     '''
     main_menu()
+
 
 if __name__ == '__main__':
     main()
