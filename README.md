@@ -1,5 +1,8 @@
 # Personal Finance Tool
 
+![Gif](./docs/personal-finance-gif.gif)
+
+
 ******
 
 ## Contents
