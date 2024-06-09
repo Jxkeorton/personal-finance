@@ -174,6 +174,8 @@ def add_transaction(transaction_type):
     print(Back.GREEN + message + Style.RESET_ALL)
     print(f"Amount: {amount}, Category: {category}, Date: {current_date}\n")
 
+    prompt_user_to_continue()
+
 
 def edit_monthly_budget():
     '''
@@ -206,6 +208,8 @@ def edit_monthly_budget():
     stats.update_cell(2, 2, new_monthly_budget)
     message = f"Current budget updated to: {new_monthly_budget}"
     print(Back.GREEN + message + Style.RESET_ALL)
+
+    prompt_user_to_continue()
 
 
 def reports_menu():
@@ -306,6 +310,8 @@ def transaction_report(transaction_type):
                    {start_date_str} and {end_date_str}.")
         print(message)
 
+    prompt_user_to_continue()
+
 
 def parse_date(date_str):
     '''
@@ -361,6 +367,8 @@ def summary_report():
         ["Net", previous_month_income - previous_month_expense]
     ]
     print(tabulate(data, headers=["Category", "Amount"]))
+
+    prompt_user_to_continue()
 
 
 def analytics_report():
@@ -422,6 +430,24 @@ def analytics_report():
     print(tabulate(data, headers=['Category', 'Amount']))
     print("--------------")
     print(f"Total Spending: {total_spending}")
+
+    prompt_user_to_continue()
+
+
+def prompt_user_to_continue():
+    '''
+    Prompts the user to press Enter to return to the main menu or Space bar to exit the script
+    '''
+    print("\nPress Enter to return to the main menu or Space bar to exit.")
+    while True:
+        user_input = input()
+        if user_input == '':
+            main_menu()
+            break
+        elif user_input == ' ':
+            sys.exit("Exiting the program.")
+        else:
+            print("Invalid input. Press Enter to return to the main menu or Space bar to exit.")
 
 
 def main():
