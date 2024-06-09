@@ -267,18 +267,19 @@ def transaction_report(transaction_type):
 
     while True:
         start_date_str = input("Enter start date (YYYY-MM-DD): ")
-        end_date_str = input("Enter end date (YYYY-MM-DD): ")
-
         start_date = parse_date(start_date_str)
-        end_date = parse_date(end_date_str)
+        if start_date is None:
+            print("Invalid date format. Please try again.")
+            continue
 
-        if start_date is None or end_date is None:
+        end_date_str = input("Enter end date (YYYY-MM-DD): ")
+        end_date = parse_date(end_date_str)
+        if end_date is None:
             print("Invalid date format. Please try again.")
             continue
 
         if start_date > end_date:
-            print("Start date must precede or equal end date. \
-                  Please try again.")
+            print("Start date must precede or equal end date. Please try again.")
             continue
 
         break
