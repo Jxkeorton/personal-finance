@@ -1,4 +1,5 @@
 import os
+import sys
 import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime, timedelta
@@ -34,7 +35,8 @@ def main_menu():
 
     menu_list = [
         "Options",
-        "Reports"
+        "Reports",
+        "Exit"
     ]
 
     print("HOME")
@@ -43,17 +45,20 @@ def main_menu():
 
     while True:
         try:
-            choice = int(input("Please select an option (1-2): "))
-            if choice not in range(1, 3):
+            choice = int(input("Please select an option (1-3): "))
+            if choice not in range(1, 4):
                 raise ValueError("Choice out of range.")
             break
         except ValueError:
-            print("Invalid choice. Please enter 1 or 2.")
+            print("Invalid choice. Please enter 1, 2 or 3.")
 
     if choice == 1:
         options_menu()
     elif choice == 2:
         reports_menu()
+    elif choice == 3:
+        sys.exit("Exiting the program.")
+
 
 
 def options_menu():
@@ -65,7 +70,9 @@ def options_menu():
 
     list = [
         "New Transaction",
-        "Edit Monthly Budget"
+        "Edit Monthly Budget",
+        "Main menu",
+        "Exit"
     ]
 
     print("OPTIONS")
@@ -74,17 +81,21 @@ def options_menu():
 
     while True:
         try:
-            choice = int(input("Please select an option (1-2): "))
-            if choice not in range(1, 3):
+            choice = int(input("Please select an option (1-4): "))
+            if choice not in range(1, 5):
                 raise ValueError("Choice out of range.")
             break
         except ValueError:
-            print("Invalid choice. Please enter 1 or 2.")
+            print("Invalid choice. Please enter 1, 2, 3 or 4.")
 
     if choice == 1:
         new_transaction_menu()
     elif choice == 2:
         edit_monthly_budget()
+    elif choice == 3:
+        main_menu()
+    elif choice == 4:
+        sys.exit("Exiting the program.")
 
 
 def new_transaction_menu():
@@ -96,7 +107,9 @@ def new_transaction_menu():
 
     list = [
         "Add Income",
-        "Add Expense"
+        "Add Expense",
+        "Main Menu",
+        "Exit"
     ]
 
     print("NEW TRANSACTION")
@@ -105,17 +118,21 @@ def new_transaction_menu():
 
     while True:
         try:
-            choice = int(input("Please select an option (1-2): "))
-            if choice not in range(1, 3):
+            choice = int(input("Please select an option (1-4): "))
+            if choice not in range(1, 5):
                 raise ValueError("Choice out of range.")
             break
         except ValueError:
-            print("Invalid choice. Please enter 1 or 2.")
+            print("Invalid choice. Please enter 1, 2, 3 or 4.")
 
     if choice == 1:
         add_transaction("income")
     elif choice == 2:
         add_transaction("expense")
+    elif choice == 3:
+        main_menu()
+    elif choice == 4:
+        sys.exit("Exiting the program.")
 
 
 def add_transaction(transaction_type):
@@ -202,7 +219,9 @@ def reports_menu():
         "Income",
         "Expenses",
         "Summary",
-        "Analytics"
+        "Analytics",
+        "Main Menu",
+        "Exit"
     ]
 
     print("REPORTS")
@@ -211,12 +230,12 @@ def reports_menu():
 
     while True:
         try:
-            choice = int(input("Please select an option (1-2): "))
-            if choice not in range(1, 5):
+            choice = int(input("Please select an option (1-6): "))
+            if choice not in range(1, 7):
                 raise ValueError("Choice out of range.")
             break
         except ValueError:
-            print("Invalid choice. Please enter either 1, 2, 3 or 4.")
+            print("Invalid choice. Please enter either 1, 2, 3, 4, 5 or 6.")
 
     if choice == 1:
         transaction_report('income')
@@ -226,6 +245,10 @@ def reports_menu():
         summary_report()
     elif choice == 4:
         analytics_report()
+    elif choice == 5:
+        main_menu()
+    elif choice == 6:
+        sys.exit("Exiting the program.")
 
 
 def transaction_report(transaction_type):
