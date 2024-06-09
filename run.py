@@ -22,7 +22,9 @@ data = stats.get_all_values()
 
 
 def clear_terminal():
-    # Clear terminal based on platform
+    ''' 
+    Clear terminal based on platform
+    '''
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
@@ -437,18 +439,20 @@ def analytics_report():
 
 def prompt_user_to_continue():
     '''
-    Prompts the user to press Enter to return to the main menu or Space bar to exit the script
+    Prompts the user to choose how they would like to continue
     '''
-    print("\nPress Enter to return to the main menu or Space bar to exit.")
+    print("\nChoose option 1 or 2 to continue")
+    print("1: Main menu")
+    print("2: Exit")
     while True:
         user_input = input()
-        if user_input == '':
+        if user_input == 1:
             main_menu()
             break
-        elif user_input == ' ':
+        elif user_input == 2:
             sys.exit("Exiting the program.")
         else:
-            print("Invalid input. Press Enter to return to the main menu or Space bar to exit.")
+            print("Invalid input. Enter 1 or 2 ")
 
 
 def main():
