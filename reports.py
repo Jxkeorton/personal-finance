@@ -8,7 +8,14 @@ from sheet import SHEET
 class ReportsMenu:
     def display(self):
         clear_terminal()
-        list = ["Income", "Expenses", "Summary", "Analytics", "Main Menu", "Exit"]
+        list = [
+            "Income",
+            "Expenses",
+            "Summary",
+            "Analytics",
+            "Main Menu",
+            "Exit"
+            ]
         print("REPORTS")
         for i, option in enumerate(list, start=1):
             print(f"{i}. {option}")
@@ -20,7 +27,7 @@ class ReportsMenu:
                     raise ValueError("Choice out of range.")
                 break
             except ValueError:
-                print("Invalid choice. Please enter either 1, 2, 3, 4, 5 or 6.")
+                print("Invalid choice. Enter either 1, 2, 3, 4, 5 or 6.")
 
         if choice == 1:
             self.transaction_report('income')
@@ -54,7 +61,7 @@ class ReportsMenu:
                 continue
 
             if start_date > end_date:
-                print("Start date must precede or equal end date. Please try again.")
+                print("Start date must precede or equal end date. Try again.")
                 continue
 
             break
@@ -82,7 +89,8 @@ class ReportsMenu:
             print(tabulate(table, headers=['Date', 'Amount', 'Category']))
             print(f"\nTotal {transaction_type.capitalize()}: {total_income}")
         else:
-            message = (f"No {transaction_type} transactions found between {start_date_str} and {end_date_str}.")
+            message = (f"No {transaction_type} transactions \
+                        found between {start_date_str} and {end_date_str}.")
             print(message)
 
         prompt_user_to_continue()
@@ -94,7 +102,9 @@ class ReportsMenu:
 
         today = datetime.now()
         first_day_of_current_month = today.replace(day=1)
-        last_day_of_previous_month = first_day_of_current_month - timedelta(days=1)
+        last_day_of_previous_month = (
+            first_day_of_current_month - timedelta(days=1)
+            )
         first_day_of_previous_month = last_day_of_previous_month.replace(day=1)
 
         income_worksheet = SHEET.worksheet('income')
@@ -104,12 +114,20 @@ class ReportsMenu:
         expense_transactions = expense_worksheet.get_all_records()
 
         previous_month_income = sum(
-            float(transaction['amount']) for transaction in income_transactions
-            if first_day_of_previous_month <= parse_date(transaction['date']) <= last_day_of_previous_month)
+            float(transaction['amount'])
+            for transaction in income_transactions
+            if first_day_of_previous_month <=
+            parse_date(transaction['date']) <=
+            last_day_of_previous_month
+        )
 
         previous_month_expense = sum(
-            float(transaction['amount']) for transaction in expense_transactions
-            if first_day_of_previous_month <= parse_date(transaction['date']) <= last_day_of_previous_month)
+            float(transaction['amount'])
+            for transaction in expense_transactions
+            if first_day_of_previous_month <=
+            parse_date(transaction['date']) <=
+            last_day_of_previous_month
+        )
 
         print(f"Month: {first_day_of_previous_month.strftime('%B %Y')}")
         data = [
@@ -139,7 +157,8 @@ class ReportsMenu:
                 continue
 
             if start_date > end_date:
-                print("Start date must precede or equal end date. Please try again.")
+                print("Start date must precede or equal \
+                       end date. Please try again.")
                 continue
 
             break
@@ -147,14 +166,22 @@ class ReportsMenu:
         expense_transactions = SHEET.worksheet('expense').get_all_records()
 
         total_spending = sum(
-            float(transaction['amount']) for transaction in expense_transactions
-            if start_date <= parse_date(transaction['date']) <= end_date)
+            float(transaction['amount'])
+            for transaction in expense_transactions
+            if start_date <=
+            parse_date(transaction['date']) <=
+            end_date
+        )
 
-        categories = set(transaction['category'] for transaction in expense_transactions)
+        categories = set(
+            transaction['category'] for transaction in expense_transactions
+        )
         spending_by_category = {
             category: sum(
-                float(transaction['amount']) for transaction in expense_transactions
-                if transaction['category'] == category and start_date <= parse_date(transaction['date']) <= end_date
+                float(transaction['amount'])
+                for transaction in expense_transactions
+                if transaction['category'] == category and start_date <=
+                parse_date(transaction['date']) <= end_date
             )
             for category in categories
         }
@@ -168,4 +195,3 @@ class ReportsMenu:
         print(f"Total Spending: {total_spending}")
 
         prompt_user_to_continue()
-

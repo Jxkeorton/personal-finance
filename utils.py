@@ -2,11 +2,13 @@ import os
 from datetime import datetime
 import sys
 
+
 def clear_terminal():
     '''
     Clear terminal based on platform
     '''
     os.system('cls' if os.name == 'nt' else 'clear')
+
 
 def prompt_user_to_continue():
     '''
@@ -25,6 +27,7 @@ def prompt_user_to_continue():
             sys.exit("Exiting the program.")
         else:
             print("Invalid input. Enter 1 or 2 ")
+
 
 def parse_date(date_str):
     '''

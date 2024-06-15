@@ -4,6 +4,7 @@ from datetime import datetime
 from colorama import Back, Style
 import sys
 
+
 class TransactionMenu:
     def display(self):
         clear_terminal()
@@ -60,6 +61,7 @@ class TransactionMenu:
         worksheet_to_update.append_row([amount, category, current_date])
         message = f"{transaction_type.capitalize()} entry added successfully!"
         print(Back.GREEN + message + Style.RESET_ALL)
-        print(f"Amount: {amount}, Category: {category}, Date: {current_date}\n")
+        print(f"Amount: {amount}, Category: {category},\
+               Date: {current_date}\n")
 
         prompt_user_to_continue()
