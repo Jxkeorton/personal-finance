@@ -6,6 +6,9 @@ from sheet import SHEET
 
 
 class ReportsMenu:
+    def __init__(self, main_menu):
+        self.main_menu = main_menu
+
     def display(self):
         clear_terminal()
         list = [
@@ -13,7 +16,7 @@ class ReportsMenu:
             "Expenses",
             "Summary",
             "Analytics",
-            "Main Menu",
+            "Go Back",
             "Exit"
             ]
         print("REPORTS")
@@ -38,7 +41,7 @@ class ReportsMenu:
         elif choice == 4:
             self.analytics_report()
         elif choice == 5:
-            self.display()
+            self.main_menu.display()
         elif choice == 6:
             sys.exit("Exiting the program.")
 

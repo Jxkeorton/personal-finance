@@ -6,12 +6,13 @@ from sheet import SHEET
 
 
 class OptionsMenu:
-    def __init__(self):
-        self.transaction_menu = TransactionMenu()
+    def __init__(self, main_menu):
+        self.transaction_menu = TransactionMenu(main_menu=self)
+        self.main_menu = main_menu
 
     def display(self):
         clear_terminal()
-        list = ["New Transaction", "Edit Monthly Budget", "Main menu", "Exit"]
+        list = ["New Transaction", "Edit Monthly Budget", "Go Back", "Exit"]
         print("OPTIONS")
         for i, option in enumerate(list, start=1):
             print(f"{i}. {option}")
@@ -30,7 +31,7 @@ class OptionsMenu:
         elif choice == 2:
             self.edit_monthly_budget()
         elif choice == 3:
-            self.display()
+            self.main_menu.display()
         elif choice == 4:
             sys.exit("Exiting the program.")
 

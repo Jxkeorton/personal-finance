@@ -5,8 +5,8 @@ from reports import ReportsMenu
 
 class MainMenu:
     def __init__(self):
-        self.options_menu = OptionsMenu()
-        self.reports_menu = ReportsMenu()
+        self.options_menu = OptionsMenu(main_menu=self)
+        self.reports_menu = ReportsMenu(main_menu=self)
 
     def display(self):
         clear_terminal()

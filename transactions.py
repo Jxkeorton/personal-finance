@@ -6,9 +6,12 @@ import sys
 
 
 class TransactionMenu:
+    def __init__(self, main_menu):
+        self.main_menu = main_menu
+
     def display(self):
         clear_terminal()
-        list = ["Add Income", "Add Expense", "Main Menu", "Exit"]
+        list = ["Add Income", "Add Expense", "Go Back", "Exit"]
         print("NEW TRANSACTION")
         for i, option in enumerate(list, start=1):
             print(f"{i}. {option}")
@@ -27,7 +30,7 @@ class TransactionMenu:
         elif choice == 2:
             self.add_transaction("expense")
         elif choice == 3:
-            self.display()
+            self.main_menu.display()
         elif choice == 4:
             sys.exit("Exiting the program.")
 
