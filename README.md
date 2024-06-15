@@ -11,21 +11,36 @@
 
 ## The User Experience
 
+This project was created to help people manage finances better and more easily by categorizing different incomes and expenses. It also allows you to set a monthly budget and see reports within certain date ranges or for the previous month.
+
+### Site Goals
+
+* To provide data to allow for more calculated decisions on spending and budgeting.
+
+### Target Audience
+
+* For people who are looking to know exactly where their money is coming and going.
+
 ### User Stories
 
-**First Time Visitor goals** 
-
-**Returning Visitor goals** 
-
-**Frequent Visiter goals** 
+* As a User, I would like to be able to add a new income
+* As a User, I would like to be able to add a new expense
+* As a User, I would like to be able to set a monthly budget
+* As a User, I would like to be able to see my income over a specified range
+* As a User, I would like to be able to see my expenses over a specified range
+* As a User, I would like to see a summary for the previous month
+* As a User, I would like to see an analysis of a specified date range
+* As a User, I would like to be able to return to the main menu without having to restart the application. 
 
 ******
 
-### Scope
+## Structure
 
-******
+### Features
 
-### Structure
+### Features left to implement
+
+A future feature I would like to add, Improving the analytics report to show spending against the monthly budget and to be able to add recurring income/expenses that happen every month from specified dates. This would minimize the amount the user will have to interact with the app making it less of a task.
 
 ******
 
