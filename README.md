@@ -34,19 +34,7 @@ This project was created to help people manage finances better and more easily b
 
 ******
 
-## Structure
-
-### Features
-
-### Features left to implement
-
-A future feature I would like to add, Improving the analytics report to show spending against the monthly budget and to be able to add recurring income/expenses that happen every month from specified dates. This would minimize the amount the user will have to interact with the app making it less of a task.
-
-******
-
-#### Skeleton
-
-### Workflow Diagrams
+## Workflow Diagrams
 
 #### Main menu
 ![Main Flow chart](./docs/main-flow-chart.png)
@@ -61,13 +49,13 @@ A future feature I would like to add, Improving the analytics report to show spe
 
 ******
 
-## Features
+## Structure
 
-### Navigation
+### Features
 
-### Interface
+### Features left to implement
 
-## Future Implementations
+A future feature I would like to add, Improving the analytics report to show spending against the monthly budget and to be able to add recurring income/expenses that happen every month from specified dates. This would minimize the amount the user will have to interact with the app making it less of a task.
 
 <sup><sub>[*Back to top*](#contents)</sup></sub>
 
@@ -75,11 +63,11 @@ A future feature I would like to add, Improving the analytics report to show spe
 
 ## Technologies Used
 
-### Languages Used
-
-******
-
-### Frameworks, Programs and Libraries Used
+* Python - Python was the main language used to build the application.
+    * Python packages used:
+        * 
+* Google sheets - This was used as data storage in order to store transaction history and other information.
+* Microsoft Snipping tool - This was used to screen record the Gif for the readme. It was originally an MP4 and ezgif.com was used to convert to GIF format.
 
 <sup><sub>[*Back to top*](#contents)</sup></sub>
 
@@ -133,11 +121,11 @@ The steps for deployment are:
 
 ## Testing
 
-### Validation
+### Pep8 Validation
 
 ******
 
-### Manual Testing
+### Functional Testing
 
 <sup><sub>[*Back to top*](#contents)</sup></sub>
 
@@ -154,12 +142,5 @@ No known bugs at this stage of development.
 ******
 
 ## Credits
-
-******
-
-### Help Used
-
-### Acknowledgements
-
 
 <sup><sub>[*Back to top*](#contents)</sup></sub>
