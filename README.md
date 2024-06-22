@@ -244,6 +244,37 @@ The steps for deployment are:
 
 ### Pep8 Validation
 
+All python code was ran through https://pep8ci.herokuapp.com/ validator and any warnings or errors were fixed. Code then validated successfully.
+
+menus.py
+
+![Menus.py pep8](./docs/menus-pep8.png)
+
+options.py
+
+![options.py pep8](./docs/options-pep8.png)
+
+reports.py
+
+![reports.py](./docs/reports-pep8.png)
+
+run.py
+
+![run.py pep8](./docs/run-pep8.png)
+
+sheet.py
+
+![sheet.py pep8](./docs/sheet-pep8.png)
+
+transactions.py
+
+![transactions.py pep8](./docs/transactions-pep8.png)
+
+utils.py
+
+![utils.py pep8](./docs/utils-pep8.png)
+
+
 ******
 
 ### Functional Testing

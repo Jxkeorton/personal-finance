@@ -3,6 +3,7 @@ from utils import clear_terminal
 from options import OptionsMenu
 from reports import ReportsMenu
 
+
 class MainMenu:
     def __init__(self):
         self.options_menu = OptionsMenu(main_menu=self)
