@@ -7,6 +7,31 @@
 
 ## Contents
 
+1. [The User Experience](#the-user-experience)
+    - [Site Goals](#site-goals)
+    - [Target Audience](#target-audience)
+    - [User Stories](#user-stories)
+2. [Workflow Diagrams](#workflow-diagrams)
+    - [Main Menu](#main-menu)
+    - [Options](#options)
+    - [Reports](#reports)
+3. [Structure](#structure)
+    - [Features](#features)
+    - [Features left to implement](#features-left-to-implement)
+4. [Technologies Used](#technologies-used)
+5. [Deployment and Local Development](#deployment-and-local-development)
+    - [Deployment](#deployment)
+    - [Local Deployment](#local-deployment)
+        - [How to Fork](#how-to-fork)
+        - [How to Clone](#how-to-clone)
+6. [Testing](#testing)
+    - [Pep8 Validation](#pep8-validation)
+    - [Functional Testing](#functional-testing)
+7. [Issues/Bugs](#issuesbugs)
+    - [Fixed Issues](#fixed-issues)
+    - [Known Bugs](#known-bugs)
+8. [Credits](#credits)
+
 ******
 
 ## The User Experience
