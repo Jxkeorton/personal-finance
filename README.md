@@ -299,9 +299,12 @@ utils.py
 
 <sup><sub>[*Back to top*](#contents)</sup></sub>
 
-## Issues/Bugs
+## Issues/Bugs#
 
 ### Fixed Issues
+
+The elif statements for the menus were not working correctly due to strings being passed in by the user for the input. 
+So these were converted to integers before making the user input equal to the 'choice'.
 
 ### Known Bugs
 
@@ -312,5 +315,22 @@ No known bugs at this stage of development.
 ******
 
 ## Credits
+
+- **[Python Documentation on datetime](https://docs.python.org/3/library/datetime.html)**: Provided comprehensive details on using the `datetime` module in Python, including manipulating dates and times, using `timedelta` objects for date arithmetic, and formatting date strings. It also covered instance methods for `date` and `time` objects, crucial for handling various date-time operations in the project.
+
+- **[Programiz on datetime strftime](https://www.programiz.com/python-programming/datetime/strftime)**: Helped understand how to format dates and times using the `strftime` method. Provided examples and explanations of different format codes, enabling the conversion of datetime objects into readable strings.
+
+- **[Programiz on datetime strptime](https://www.programiz.com/python-programming/datetime/strptime)**: Essential for parsing strings into datetime objects using the `strptime` method. Explained how to specify the format of the input string, critical for converting user input or data from various sources into datetime objects.
+
+- **[GeeksforGeeks on datetime.timedelta](https://www.geeksforgeeks.org/python-datetime-timedelta-function/)**: Detailed the `timedelta` class, explaining how to create and use `timedelta` objects for date and time arithmetic. Included practical examples of adding and subtracting time spans, useful for handling durations in the project.
+
+- **[Tabulate on PyPI](https://pypi.org/project/tabulate/)**: Provided functionality to display tabular data in a readable format. Instrumental in presenting data in tables with various formatting options, enhancing the readability and presentation of data.
+
+- **[Colorama on PyPI](https://pypi.org/project/colorama/)**: Used to add color to text in the project's console output. Simplified the process of making terminal output more user-friendly and visually appealing by providing cross-platform support for colored text.
+
+- **[Ezgif](https://ezgif.com/)**: Used to create and edit GIFs, helping generate and manipulate animated images for the project. Provided a straightforward interface to perform tasks such as resizing, cropping, and optimizing GIFs.
+
+- **[GeeksforGeeks on Python exit commands](https://www.geeksforgeeks.org/python-exit-commands-quit-exit-sys-exit-and-os-_exit/)**: Explained various exit commands in Python (`quit()`, `exit()`, `sys.exit()`, and `os._exit()`), detailing their differences and appropriate usage scenarios. Crucial for implementing proper termination and cleanup routines in the project.
+
 
 <sup><sub>[*Back to top*](#contents)</sup></sub>
