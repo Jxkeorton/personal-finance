@@ -183,7 +183,10 @@ A future feature I would like to add, Improving the analytics report to show spe
 
 * Python - Python was the main language used to build the application.
     * Python packages used:
-        * 
+        * DateTime - To validate dates
+        * Colorama - To color outputs
+        * Tabulate - Used to create a table output
+        * gspread - Used to read/write to google worksheets
 * Google sheets - This was used as data storage in order to store transaction history and other information.
 * Microsoft Snipping tool - This was used to screen record the Gif for the readme. It was originally an MP4 and ezgif.com was used to convert to GIF format.
 
