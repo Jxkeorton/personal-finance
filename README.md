@@ -23,11 +23,9 @@ This project was created to help people manage finances better and more easily b
 
 ### User Stories
 
-* As a User, I would like to be able to add a new income
-* As a User, I would like to be able to add a new expense
+* As a User, I would like to be able to add a new income and expense
 * As a User, I would like to be able to set a monthly budget
-* As a User, I would like to be able to see my income over a specified range
-* As a User, I would like to be able to see my expenses over a specified range
+* As a User, I would like to be able to see my income and expenses over a specified range
 * As a User, I would like to see a summary for the previous month
 * As a User, I would like to see an analysis of a specified date range
 * As a User, I would like to be able to return to the main menu without having to restart the application. 
@@ -52,6 +50,98 @@ This project was created to help people manage finances better and more easily b
 ## Structure
 
 ### Features
+
+USER STORY
+
+`
+As a User, I would like to be able to add a new income and expense
+`
+
+IMPLEMENTATION
+* New Transaction menu
+    * Here the user can select between the following options:
+        * 1 - Add Income - This option will ask for user input, once all the data is collected it will save to the google sheets worksheet.
+        * 2 - Add Expense - This option will ask for user input, once all the data is collected it will save to the google sheets worksheet.
+        * 3 - Go Back - This option will return the user to the Options menu.
+        * 4 - Exit - This option will exit the application/programme
+    * The user can will be prompted to enter a number for the value of there income or expense depending on the option chosen and a category. They can then enter the value and press enter to upload there new data to the google worksheet.
+
+
+USER STORY
+
+`
+As a User, I would like to be able to set a monthly budget
+`
+
+IMPLEMENTATION
+* Options Menu
+    * Here the user has the following options:
+        * 1 - New Transaction - This option will send the user to the New Transaction menu
+        * 2 - Edit monthly budget - This option will display the current monthly budget and ask for user input, once all the data is collected it will save to the google sheet worksheet under monthly budget.
+        * 3 - Go Back - This option will return the user to the Main menu
+        * 4 - Exit - This option will exit the application/programme
+    * When the user chooses the edit monthly budget option they will be able to see there current monthly budget and edit it.
+
+USER STORY
+
+`
+As a User, I would like to be able to see my income and expenses over a specified range
+`
+
+IMPLEMENTATION
+* Reports menu
+    * Here the user has the following options:
+        * 1 - Income - The user will be prompted for multiple inputs , the appropriate data is then displayed 
+        * 2 - Expenses - The user will be prompted for multiple inputs , the appropriate data is then displayed 
+        * 3 - Summary - A monthly summary will be displayed for the previous month
+        * 4 - Analytics - The user will be prompted for multiple inputs and will then be shown a display of there spending habits over a specified range
+        * 5 - Go Back - This will take the user back to the previous menu
+        * 6 - Exit - This option will exit the application/programme
+    * When the income or expenses option is selected the user will be prompted to input a date range, after a correct date range in inputted they will be displayed with the appropriate information
+
+USER STORY
+
+`
+As a User, I would like to see a summary for the previous month
+`
+
+IMPLEMENTATION
+* Reports menu
+    * Here the user has the following options:
+        * 1 - Income - The user will be prompted for multiple inputs , the data is then saved to the google worksheet
+        * 2 - Expenses - The user will be prompted for multiple inputs , the data is then saved to the google worksheet
+        * 3 - Summary - A monthly summary will be displayed for the previous month
+        * 4 - Analytics - The user will be prompted for multiple inputs and will then be shown a display of there spending habits over a specified range
+        * 5 - Go Back - This will take the user back to the previous menu
+        * 6 - Exit - This option will exit the application/programme
+    * When the summary option is selected the summary for the previous month will be displayed
+
+USER STORY
+
+`
+As a User, I would like to see an analysis of a specified date range 
+`
+
+IMPLEMENTATION
+* Reports menu
+    * Here the user has the following options:
+        * 1 - Income - The user will be prompted for multiple inputs , the data is then saved to the google worksheet
+        * 2 - Expenses - The user will be prompted for multiple inputs , the data is then saved to the google worksheet
+        * 3 - Summary - A monthly summary will be displayed for the previous month
+        * 4 - Analytics - The user will be prompted for multiple inputs and will then be shown a display of there spending habits over a specified range
+        * 5 - Go Back - This will take the user back to the previous menu
+        * 6 - Exit - This option will exit the application/programme
+    * When the analytics option is selected the user would be prompted to input a date range, when a correct date range is entered a display of analytics for the users spending will be presented.
+
+USER STORY
+
+`
+As a User, I would like to be able to return to the main menu without having to restart the application.
+`
+
+IMPLEMENTATION
+Across all the menus there is an option to return to the previous menu which you can do until you get back to the main menu.
+The user must input the correct corresponding number in order to return to the previous menu.
 
 ### Features left to implement
 
