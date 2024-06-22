@@ -248,6 +248,24 @@ The steps for deployment are:
 
 ### Functional Testing
 
+| Test                                      | Steps                                                          | Expected                                                         | Actual                                                           |
+| ----------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| running programme                         | python [run.py](http://run.py/) in the terminal                | main menu appears in clear terminal                              | main menu appears in clear terminal                              |
+| select all menu options                   | select each option available on every menu screen              | selected menu/option appears in clear terminal                   | selected menu/option appears in clear terminal                   |
+| select go back option on all menu screens | select the go back option where available                      | go back to previous menu                                         | go back to previous menu                                         |
+| add income                                | follow steps to add a new income                               | a new income is successfully added to google sheet               | a new income is successfully added to google sheet               |
+| add expense                               | follow steps to add a new expense                              | a new expense is successfully added to google sheet              | a new expense is successfully added to google sheet              |
+| select exit on all menu screens           | select exit option where available                             | the programme exits                                              | the programme exits                                              |
+| edit monthly budget                       | visit the edit budget option and change the budget             | the monthly budget successfully updates in google sheet          | the monthly budget successfully updates in google sheet          |
+| see income report                         | enter date range to see report                                 | report shows income within date range                            | report shows income within date range                            |
+| see expense report                        | enter date range to see report                                 | report shows expenses within date range                          | report shows expenses within date range                          |
+| see summary                               | select summary option                                          | monthly summary shown for previous month                         | monthly summary shown for previous month                         |
+| see analytics                             | enter date range for analytics                                 | spending habits shown for each category within date range        | spending habits shown for each category within date range        |
+| validation for date range inputs          | enter incorrect date format , a date that is before start date | error message is shown to user and user is prompted to try again | error message is shown to user and user is prompted to try again |
+| validation for menu choices               | enter incorrect number , enter a letter                        | error message is shown to user and user is prompted to try again | error message is shown to user and user is prompted to try again |
+| validation for monthly budget             | enter a letter                                                 | error message is shown to user and user is prompted to try again | error message is shown to user and user is prompted to try again |
+| validation for new transactions           | enter letters                                                  | error message is shown to user and user is prompted to try again | error message is shown to user and user is prompted to try again |
+
 <sup><sub>[*Back to top*](#contents)</sup></sub>
 
 ## Issues/Bugs
