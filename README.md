@@ -324,7 +324,7 @@ utils.py
 
 <sup><sub>[*Back to top*](#contents)</sup></sub>
 
-## Issues/Bugs#
+## Issues/Bugs
 
 ### Fixed Issues
 
