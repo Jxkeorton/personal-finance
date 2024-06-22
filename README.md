@@ -23,12 +23,13 @@ This project was created to help people manage finances better and more easily b
 
 ### User Stories
 
+* As a User, I would like to be able to easily find the various menus so that I can view information or add information.
 * As a User, I would like to be able to add a new income and expense
 * As a User, I would like to be able to set a monthly budget
 * As a User, I would like to be able to see my income and expenses over a specified range
 * As a User, I would like to see a summary for the previous month
 * As a User, I would like to see an analysis of a specified date range
-* As a User, I would like to be able to return to the main menu without having to restart the application. 
+* As a User, I would like to be able to return to the main menu without having to restart the application.
 
 ******
 
@@ -54,6 +55,22 @@ This project was created to help people manage finances better and more easily b
 USER STORY
 
 `
+As a User, I would like to be able to easily find the various menus so that I can view information or add information.
+`
+
+IMPLEMENTATION
+* Main Menu
+    * Here the user can select between the following options:
+        * 1 - Options - This option will navigate the user to the options menu
+        * 2 - Reports  - This option will navigate the user to the reports menu
+        * 3 - Exit - This option will exit the application/programme
+    * The user must input a correct number corresponding to each menu or they will be alerted of an incorrect choice and the menu will be presented again. This is the same for all menus.
+
+![Main menu](./docs/home-menu.png)
+
+USER STORY
+
+`
 As a User, I would like to be able to add a new income and expense
 `
 
@@ -66,6 +83,9 @@ IMPLEMENTATION
         * 4 - Exit - This option will exit the application/programme
     * The user can will be prompted to enter a number for the value of there income or expense depending on the option chosen and a category. They can then enter the value and press enter to upload there new data to the google worksheet.
 
+![New transaction menu](./docs/new-transaction-menu.png)
+
+![Add income or expense](./docs/add-income-expense.png)
 
 USER STORY
 
@@ -81,6 +101,8 @@ IMPLEMENTATION
         * 3 - Go Back - This option will return the user to the Main menu
         * 4 - Exit - This option will exit the application/programme
     * When the user chooses the edit monthly budget option they will be able to see there current monthly budget and edit it.
+
+![Edit monthly budget](./docs/edit-monthly-budget.png)
 
 USER STORY
 
@@ -99,6 +121,8 @@ IMPLEMENTATION
         * 6 - Exit - This option will exit the application/programme
     * When the income or expenses option is selected the user will be prompted to input a date range, after a correct date range in inputted they will be displayed with the appropriate information
 
+![Income or Expense report](./docs/income-expense-report.png)
+
 USER STORY
 
 `
@@ -116,6 +140,8 @@ IMPLEMENTATION
         * 6 - Exit - This option will exit the application/programme
     * When the summary option is selected the summary for the previous month will be displayed
 
+![Summary report](./docs/summary-report.png)
+
 USER STORY
 
 `
@@ -132,6 +158,8 @@ IMPLEMENTATION
         * 5 - Go Back - This will take the user back to the previous menu
         * 6 - Exit - This option will exit the application/programme
     * When the analytics option is selected the user would be prompted to input a date range, when a correct date range is entered a display of analytics for the users spending will be presented.
+
+![Analytics report](./docs/analytics-report.png)
 
 USER STORY
 
