@@ -97,7 +97,6 @@ class ReportsMenu:
         prompt_user_to_continue()
 
     def summary_report(self):
-        from sheet import SHEET
         clear_terminal()
         print("MONTHLY SUMMARY REPORT")
 
