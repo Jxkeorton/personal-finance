@@ -88,7 +88,7 @@ IMPLEMENTATION
     * Here the user can select between the following options:
         * 1 - Options - This option will navigate the user to the options menu
         * 2 - Reports  - This option will navigate the user to the reports menu
-        * 3 - Exit - This option will exit the application/programme
+        * 3 - Exit - This option will exit the application/program
     * The user must input a correct number corresponding to each menu or they will be alerted of an incorrect choice and the menu will be presented again. This is the same for all menus.
 
 ![Main menu](./docs/home-menu.png)
@@ -105,7 +105,7 @@ IMPLEMENTATION
         * 1 - Add Income - This option will ask for user input, once all the data is collected it will save to the google sheets worksheet.
         * 2 - Add Expense - This option will ask for user input, once all the data is collected it will save to the google sheets worksheet.
         * 3 - Go Back - This option will return the user to the Options menu.
-        * 4 - Exit - This option will exit the application/programme
+        * 4 - Exit - This option will exit the application/program
     * The user can will be prompted to enter a number for the value of there income or expense depending on the option chosen and a category. They can then enter the value and press enter to upload there new data to the google worksheet.
 
 ![New transaction menu](./docs/new-transaction-menu.png)
@@ -124,7 +124,7 @@ IMPLEMENTATION
         * 1 - New Transaction - This option will send the user to the New Transaction menu
         * 2 - Edit monthly budget - This option will display the current monthly budget and ask for user input, once all the data is collected it will save to the google sheet worksheet under monthly budget.
         * 3 - Go Back - This option will return the user to the Main menu
-        * 4 - Exit - This option will exit the application/programme
+        * 4 - Exit - This option will exit the application/program
     * When the user chooses the edit monthly budget option they will be able to see there current monthly budget and edit it.
 
 ![Edit monthly budget](./docs/edit-monthly-budget.png)
@@ -143,7 +143,7 @@ IMPLEMENTATION
         * 3 - Summary - A monthly summary will be displayed for the previous month
         * 4 - Analytics - The user will be prompted for multiple inputs and will then be shown a display of there spending habits over a specified range
         * 5 - Go Back - This will take the user back to the previous menu
-        * 6 - Exit - This option will exit the application/programme
+        * 6 - Exit - This option will exit the application/program
     * When the income or expenses option is selected the user will be prompted to input a date range, after a correct date range in inputted they will be displayed with the appropriate information
 
 ![Income or Expense report](./docs/income-expense-report.png)
@@ -162,7 +162,7 @@ IMPLEMENTATION
         * 3 - Summary - A monthly summary will be displayed for the previous month
         * 4 - Analytics - The user will be prompted for multiple inputs and will then be shown a display of there spending habits over a specified range
         * 5 - Go Back - This will take the user back to the previous menu
-        * 6 - Exit - This option will exit the application/programme
+        * 6 - Exit - This option will exit the application/program
     * When the summary option is selected the summary for the previous month will be displayed
 
 ![Summary report](./docs/summary-report.png)
@@ -181,7 +181,7 @@ IMPLEMENTATION
         * 3 - Summary - A monthly summary will be displayed for the previous month
         * 4 - Analytics - The user will be prompted for multiple inputs and will then be shown a display of there spending habits over a specified range
         * 5 - Go Back - This will take the user back to the previous menu
-        * 6 - Exit - This option will exit the application/programme
+        * 6 - Exit - This option will exit the application/program
     * When the analytics option is selected the user would be prompted to input a date range, when a correct date range is entered a display of analytics for the users spending will be presented.
 
 ![Analytics report](./docs/analytics-report.png)
@@ -209,6 +209,7 @@ A future feature I would like to add, Improving the analytics report to show spe
 * Python - Python was the main language used to build the application.
     * Python packages used:
         * DateTime - To validate dates
+        * timedelta - To find a date range
         * Colorama - To color outputs
         * Tabulate - Used to create a table output
         * gspread - Used to read/write to google worksheets
@@ -220,6 +221,19 @@ A future feature I would like to add, Improving the analytics report to show spe
 ******
 
 ## Deployment and Local Development
+
+### Version Control
+
+The site was created using the Visual Studio Code editor and pushed to github to the remote repository ‘Blackjack Royale’.
+
+The following git commands were used throughout development to push code to the remote repo:
+
+```git add <file>``` - This command was used to add the file(s) to the staging area before they are committed.
+
+```git commit -m “commit message”``` - This command was used to commit changes to the local repository queue ready for the final step.
+
+```git push``` - This command was used to push all committed code to the remote repository on github.
+
 
 ### Deployment
 
@@ -306,12 +320,12 @@ utils.py
 
 | Test                                      | Steps                                                          | Expected                                                         | Actual                                                           |
 | ----------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| running programme                         | python [run.py](http://run.py/) in the terminal                | main menu appears in clear terminal                              | main menu appears in clear terminal                              |
+| running program                         | python [run.py](http://run.py/) in the terminal                | main menu appears in clear terminal                              | main menu appears in clear terminal                              |
 | select all menu options                   | select each option available on every menu screen              | selected menu/option appears in clear terminal                   | selected menu/option appears in clear terminal                   |
 | select go back option on all menu screens | select the go back option where available                      | go back to previous menu                                         | go back to previous menu                                         |
 | add income                                | follow steps to add a new income                               | a new income is successfully added to google sheet               | a new income is successfully added to google sheet               |
 | add expense                               | follow steps to add a new expense                              | a new expense is successfully added to google sheet              | a new expense is successfully added to google sheet              |
-| select exit on all menu screens           | select exit option where available                             | the programme exits                                              | the programme exits                                              |
+| select exit on all menu screens           | select exit option where available                             | the program exits                                              | the program exits                                              |
 | edit monthly budget                       | visit the edit budget option and change the budget             | the monthly budget successfully updates in google sheet          | the monthly budget successfully updates in google sheet          |
 | see income report                         | enter date range to see report                                 | report shows income within date range                            | report shows income within date range                            |
 | see expense report                        | enter date range to see report                                 | report shows expenses within date range                          | report shows expenses within date range                          |
