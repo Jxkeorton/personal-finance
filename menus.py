@@ -10,6 +10,21 @@ class MainMenu:
         self.reports_menu = ReportsMenu(main_menu=self)
 
     def display(self):
+        """
+        Displays the main menu to the user and handles their input.
+
+        The menu presents three options to the user:
+        1. Options - Navigates to the Options menu.
+        2. Reports - Navigates to the Reports menu.
+        3. Exit - Exits the program.
+
+        The method clears the terminal, displays the menu options, and then 
+        waits for the user to input their choice. If the input is invalid 
+        (i.e., not an integer between 1 and 3), it prompts the user to 
+        re-enter their choice. Based on the user's selection, the method 
+        either calls the display method of the corresponding menu (Options 
+        or Reports) or exits the program.
+        """
         clear_terminal()
         menu_list = ["Options", "Reports", "Exit"]
         print("HOME")

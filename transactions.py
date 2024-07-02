@@ -7,9 +7,22 @@ import sys
 
 class TransactionMenu:
     def __init__(self, main_menu):
+        """
+        Initializes TransactionMenu with a reference to the main menu.
+
+        Args:
+            main_menu (MainMenu): Instance of the MainMenu class.
+        """
         self.main_menu = main_menu
 
     def display(self):
+        """
+        Displays the transaction menu and handles user input.
+
+        Presents four options: Add Income, Add Expense, Go Back, and Exit.
+        Based on the user's choice, navigates to the corresponding submenu or 
+        exits the program.
+        """
         clear_terminal()
         list = ["Add Income", "Add Expense", "Go Back", "Exit"]
         print("NEW TRANSACTION")
@@ -35,6 +48,15 @@ class TransactionMenu:
             sys.exit("Exiting the program.")
 
     def add_transaction(self, transaction_type):
+        """
+        Adds a new income or expense entry.
+
+        Prompts the user for the amount and category, validates the inputs, 
+        and updates the corresponding worksheet.
+        
+        Args:
+            transaction_type (str): Type of transaction ('income' or 'expense').
+        """
         clear_terminal()
         print(f"ADD {transaction_type.upper()}")
         print("Enter numbers only\n")

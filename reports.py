@@ -7,9 +7,22 @@ from sheet import SHEET
 
 class ReportsMenu:
     def __init__(self, main_menu):
+        """
+        Initializes ReportsMenu with a reference to the main menu.
+
+        Args:
+            main_menu (MainMenu): Instance of the MainMenu class.
+        """
         self.main_menu = main_menu
 
     def display(self):
+        """
+        Displays the reports menu and handles user input.
+
+        Presents six options: Income, Expenses, Summary, Analytics, Go Back,
+        and Exit. Based on the user's choice, navigates to the corresponding
+        submenu or exits the program.
+        """
         clear_terminal()
         list = [
             "Income",
@@ -46,6 +59,15 @@ class ReportsMenu:
             sys.exit("Exiting the program.")
 
     def transaction_report(self, transaction_type):
+        """
+        Displays a report for the specified transaction type (income or expense).
+
+        Prompts the user for a date range, filters the transactions within that
+        range, and displays the transactions and total amount.
+
+        Args:
+            transaction_type (str): Type of transaction ('income' or 'expense').
+        """
         clear_terminal()
         print(f"{transaction_type.upper()} REPORT")
         print("Please enter the date range in YYYY-MM-DD format.\n")
@@ -97,6 +119,12 @@ class ReportsMenu:
         prompt_user_to_continue()
 
     def summary_report(self):
+        """
+        Displays a monthly summary report.
+
+        Summarizes the total income, total expenses, and net income for the
+        previous month.
+        """
         clear_terminal()
         print("MONTHLY SUMMARY REPORT")
 
@@ -140,6 +168,12 @@ class ReportsMenu:
         prompt_user_to_continue()
 
     def analytics_report(self):
+        """
+        Displays a spending analytics report.
+
+        Prompts the user for a date range, calculates total spending, and
+        provides a breakdown of spending by category within that range.
+        """
         from sheet import SHEET
         clear_terminal()
         print("SPENDING ANALYTICS REPORT")
