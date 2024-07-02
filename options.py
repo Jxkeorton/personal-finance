@@ -27,9 +27,9 @@ class OptionsMenu:
         """
 
         clear_terminal()
-        list = ["New Transaction", "Edit Monthly Budget", "Go Back", "Exit"]
+        choices = ["New Transaction", "Edit Monthly Budget", "Go Back", "Exit"]
         print("OPTIONS")
-        for i, option in enumerate(list, start=1):
+        for i, option in enumerate(choices, start=1):
             print(f"{i}. {option}")
 
         while True:

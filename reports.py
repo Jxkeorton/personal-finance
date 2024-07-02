@@ -24,7 +24,7 @@ class ReportsMenu:
         submenu or exits the program.
         """
         clear_terminal()
-        list = [
+        choices = [
             "Income",
             "Expenses",
             "Summary",
@@ -33,7 +33,7 @@ class ReportsMenu:
             "Exit"
             ]
         print("REPORTS")
-        for i, option in enumerate(list, start=1):
+        for i, option in enumerate(choices, start=1):
             print(f"{i}. {option}")
 
         while True:
