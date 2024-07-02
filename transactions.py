@@ -20,7 +20,7 @@ class TransactionMenu:
         Displays the transaction menu and handles user input.
 
         Presents four options: Add Income, Add Expense, Go Back, and Exit.
-        Based on the user's choice, navigates to the corresponding submenu or 
+        Based on the user's choice, navigates to the corresponding submenu or
         exits the program.
         """
         clear_terminal()
@@ -51,11 +51,12 @@ class TransactionMenu:
         """
         Adds a new income or expense entry.
 
-        Prompts the user for the amount and category, validates the inputs, 
+        Prompts the user for the amount and category, validates the inputs,
         and updates the corresponding worksheet.
-        
+
         Args:
-            transaction_type (str): Type of transaction ('income' or 'expense').
+            transaction_type (str): Type of transaction
+            ('income' or 'expense').
         """
         clear_terminal()
         print(f"ADD {transaction_type.upper()}")

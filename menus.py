@@ -18,11 +18,11 @@ class MainMenu:
         2. Reports - Navigates to the Reports menu.
         3. Exit - Exits the program.
 
-        The method clears the terminal, displays the menu options, and then 
-        waits for the user to input their choice. If the input is invalid 
-        (i.e., not an integer between 1 and 3), it prompts the user to 
-        re-enter their choice. Based on the user's selection, the method 
-        either calls the display method of the corresponding menu (Options 
+        The method clears the terminal, displays the menu options, and then
+        waits for the user to input their choice. If the input is invalid
+        (i.e., not an integer between 1 and 3), it prompts the user to
+        re-enter their choice. Based on the user's selection, the method
+        either calls the display method of the corresponding menu (Options
         or Reports) or exits the program.
         """
         clear_terminal()

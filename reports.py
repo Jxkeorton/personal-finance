@@ -60,13 +60,15 @@ class ReportsMenu:
 
     def transaction_report(self, transaction_type):
         """
-        Displays a report for the specified transaction type (income or expense).
+        Displays a report for the specified
+        transaction type (income or expense).
 
         Prompts the user for a date range, filters the transactions within that
         range, and displays the transactions and total amount.
 
         Args:
-            transaction_type (str): Type of transaction ('income' or 'expense').
+            transaction_type (str):
+            Type of transaction ('income' or 'expense').
         """
         clear_terminal()
         print(f"{transaction_type.upper()} REPORT")

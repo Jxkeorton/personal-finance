@@ -11,8 +11,8 @@ class OptionsMenu:
         Initializes the OptionsMenu with a reference to the main menu.
 
         Args:
-            main_menu (MainMenu): An instance of the MainMenu class to return to
-                                  the main menu.
+            main_menu (MainMenu): An instance of the MainMenu class
+            to return to the main menu.
         """
         self.transaction_menu = TransactionMenu(main_menu=self)
         self.main_menu = main_menu
@@ -21,8 +21,8 @@ class OptionsMenu:
         """
         Displays the options menu and handles user input.
 
-        Presents four options: New Transaction, Edit Monthly Budget, Go Back, 
-        and Exit. Based on the user's choice, navigates to the corresponding 
+        Presents four options: New Transaction, Edit Monthly Budget, Go Back,
+        and Exit. Based on the user's choice, navigates to the corresponding
         submenu or exits the program.
         """
 
@@ -54,7 +54,7 @@ class OptionsMenu:
         """
         Allows the user to update their monthly budget.
 
-        Displays the current budget, prompts for a new budget, and updates it 
+        Displays the current budget, prompts for a new budget, and updates it
         in the 'stats' worksheet if the input is valid.
         """
         clear_terminal()
